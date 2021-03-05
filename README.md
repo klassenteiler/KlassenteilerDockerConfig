@@ -1,2 +1,4 @@
 # KlassenteilerDockerConfig
-A docker compose config to deploy Klassenteiler on your own server. 
+This is more or less the configuration we run in deployment on our server to serve the webapp klassenteiler.de 
+
+The only tricky part is HTTPS. I have multiple web-apps deployed on my server and use some docker services (in the folder nginx-proxy) to deal with all the HTTPS certificates etc. for the corresponding different domains. Likely your deployment will look different but the contents of the folder KlassenteilderWithNginxProxy should give you an idea of what is needed. The environment variables in KlassenteilerWithNgingProxy/docker-compose.yml are used by nginx-proxy for the domain mapping. 

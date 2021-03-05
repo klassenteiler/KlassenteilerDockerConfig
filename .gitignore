@@ -1,0 +1,3 @@
+.dccache
+database/*
+!database/.gitkeep

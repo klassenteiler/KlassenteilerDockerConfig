@@ -1,0 +1,56 @@
+version: '3.4'
+
+services:  
+  db:
+    image: postgres
+    container_name: klassentrenner_db
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: test_password
+      POSTGRES_DB: test_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database/sql:/docker-entrypoint-initdb.d
+      - ./database/database:/var/lib/postgresql/data
+    networks:
+      - kt_network
+
+  backend:
+    image: klassenteilen/klassenteiler-backend:v0.2
+    container_name: klassentrenner_api
+    expose:
+      - 9000
+    restart: always
+    environment:
+      VIRTUAL_HOST: stageapi.klassenteiler.de, api.klassenteiler.de
+      LETSENCRYPT_HOST: stageapi.klassenteiler.de, api.klassenteiler.de
+      LETSENCRYPT_EMAIL: ch.23@web.de
+    networks:
+      - kt_network
+      - external
+
+  frontend:
+    image: klassenteilen/klassenteiler-frontend:v0.2.2
+    container_name: klassentrenner_ui
+    expose:
+      - 80
+    restart: always
+    networks:
+      - kt_network
+      - external
+    environment:
+      VIRTUAL_HOST: stage.klassenteiler.de, klassenteiler.de, www.klassenteiler.de, klassenteilen.de, www.klassenteilen.de
+      LETSENCRYPT_HOST: stage.klassenteiler.de, klassenteiler.de, www.klassenteiler.de, klassenteilen.de, www.klassenteilen.de
+      LETSENCRYPT_EMAIL: ch.23@web.de
+    volumes:
+      - ./config:/usr/share/nginx/html/config
+
+
+networks:
+    kt_network:
+    external:
+        external:
+            name: nginx-proxy
+
