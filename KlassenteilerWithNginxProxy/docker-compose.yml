@@ -9,8 +9,6 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: test_password
       POSTGRES_DB: test_db
-    ports:
-      - "5432:5432"
     volumes:
       - ./database/sql:/docker-entrypoint-initdb.d
       - ./database/database:/var/lib/postgresql/data
