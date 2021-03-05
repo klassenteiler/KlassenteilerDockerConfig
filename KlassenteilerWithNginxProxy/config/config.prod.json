@@ -1,0 +1,15 @@
+{
+    "apiBaseUrl": "https://api.klassenteiler.de",
+    "frontendUrl": "klassenteiler.de",
+    "maxFriends": 5,
+    "classSecretLength": 8,
+    "teacherPasswordLength": 8,
+    "description": "config prod on server",
+    "news": "UPDATE: Jetzt mit DEMO Schule zum ausprobieren + die Lehrkraft hat neu die Möglichkeit Namen zu korrigieren. Feedback und Fragen an mail@klassenteiler.de",
+    "skipMerging": false,
+    "gitURL": "https://github.com/klassenteiler/Klassenteiler",
+    "demoData": "demoClass.json",
+    "demoSchoolnamePrefix": "DEMO"
+    }
+    
+    
